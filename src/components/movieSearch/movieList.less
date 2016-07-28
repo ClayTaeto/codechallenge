@@ -1,165 +1,139 @@
 //nesting the rules will make them very specific
 //also it keeps things easier to read and write
-.movie-container{
-	display: flex;
-  	flex-flow: row wrap;
-  	justify-content: space-around;
-  	
-
-	.movie-result {
-		width: 150px;
-	    height: 280px;
-		margin-left: 22px;
-		margin-right: 22px;
-		position: relative;
-
-		//movie titles
-		h4{
-		    //handle truncating 
-		    width: 150px;
-		    text-overflow: ellipsis;
-			white-space: nowrap;
-			overflow: hidden;
-			text-align: center;
-			color: #2c3e50;
-		}
-
-		.posterWrap{
-			//this will crop the posters
-		    min-height: 225px;
-		    max-height: 225px;
-		    overflow: hidden;
-		    box-shadow: 2px 2px 20px rgba(0,0,0, .40);	
-		    background-color: rgba(149,165,166,0.25);
-		    img {
-				display:block;
-				max-height: 100%; 
-				max-width: 100%;				
-			}	
-	    }
-		
-
-		//this is for the animations
-		//it's seperate so itterations on movement easier
-		
-		//this brings opacity in and out quickly, 
-		//that way things are imediately readable & responsive
-		.caption{
-			transition: all 0.3s;
-			opacity:0;
-			.vote-average {
-				margin-top: 130px;
-				//This keeps the vote average idle as it fades out.
-				//draws attention away from it
-				transition: margin-top 0.3s step-end;
-			}
-		}
-
-		//having :focus means animations also work when people tab through em
-		//always good to have accessability bits
-		&:hover, &:focus{
-			.caption{
-				opacity:1;
-
-				.vote-average {					
-					margin-top: 150px;
-					//this slower movement draws the eye in to the important data					
-
-					transition: all 0.5s;
-				}
-			}
-		}
-			
-		.caption{
-			position: absolute;
-			top:0;
-
-			height:225px;
-			width:150px;
-						
-			background-color: rgba(44, 62, 80, 0.40);
-			
-			
-			color: #fff;
-			text-align: center;
-			
-			.vote-average {
-				//different text shaddow to draw attention to the score
-				text-shadow:
-				-1px -1px 2px #515151,
-				1px -1px 2px #000,
-				-1px 1px 2px #000,
-				1px 1px 2px #000;  
-				
-			}
-
-            .released-date {
-            	//text shadow to make date readable 
-            	text-shadow: 0 0 1px #000;
+.movie-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    .movie-result {
+        width: 150px;
+        height: 280px;
+        margin-left: 22px;
+        margin-right: 22px;
+        position: relative;
+        //movie titles
+        h4 {
+            //handle truncating 
+            width: 150px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            text-align: center;
+            color: #2c3e50;
+        }
+        .posterWrap {
+            //this will crop the posters
+            min-height: 225px;
+            max-height: 225px;
+            overflow: hidden;
+            box-shadow: 2px 2px 20px rgba(0, 0, 0, .40);
+            background-color: rgba(149, 165, 166, 0.25);
+            img {
+                display: block;
+                max-height: 100%;
+                max-width: 100%;
             }
-		}
-	}
-
-
+        }
+        //this is for the animations
+        //it's seperate so itterations on movement easier
+        //this brings opacity in and out quickly, 
+        //that way things are imediately readable & responsive
+        .caption {
+            transition: all 0.3s;
+            opacity: 0;
+            .vote-average {
+                margin-top: 130px;
+                //This keeps the vote average idle as it fades out.
+                //draws attention away from it
+                transition: margin-top 0.3s step-end;
+            }
+        }
+        //having :focus means animations also work when people tab through em
+        //always good to have accessability bits
+        &:hover,
+        &:focus {
+            .caption {
+                opacity: 1;
+                .vote-average {
+                    margin-top: 150px;
+                    //this slower movement draws the eye in to the important data					
+                    transition: all 0.5s;
+                }
+            }
+        }
+        .caption {
+            position: absolute;
+            top: 0;
+            height: 225px;
+            width: 150px;
+            background-color: rgba(44, 62, 80, 0.40);
+            color: #fff;
+            text-align: center;
+            .vote-average {
+                //different text shaddow to draw attention to the score
+                text-shadow: -1px -1px 2px #515151, 1px -1px 2px #000, -1px 1px 2px #000, 1px 1px 2px #000;
+            }
+            .released-date {
+                //text shadow to make date readable 
+                text-shadow: 0 0 1px #000;
+            }
+        }
+    }
 }
-.mobile-search{
-	display:none;
+
+.mobile-search {
+    display: none;
 }
 
 // Mobile bits 
 @media (max-width: 500px) {
-	//show the mobile specific seach box
-	.mobile-search{
-		display:block;
-	}
-	.page-container{
+    //show the mobile specific seach box
+    .mobile-search {
+        display: block;
+    }
+    .page-container {
         margin-top: 52px;
     }
-    .navbar-form{
-    	background-color: #2c3e50;
+    .navbar-form {
+        background-color: #2c3e50;
     }
-	.movie-container {
-
-		.movie-result {
-			height: auto;
-			width: ~"calc(100% - 44px)";
-
-			.posterWrap{
-				max-height: none;
-				img {					
-					width: 100%;
-					//we can ignore cropping height 'cause different heights won't be noticable
-					height:100%;
-				}
-			}
-			h4{
-				width: ~"calc(100%)";
-			    margin-bottom: 40px;
-			}
-		}
-	}
+    .movie-container {
+        .movie-result {
+            height: auto;
+            width: ~"calc(100% - 44px)";
+            .posterWrap {
+                max-height: none;
+                img {
+                    width: 100%;
+                    //we can ignore cropping height 'cause different heights won't be noticable
+                    height: 100%;
+                }
+            }
+            h4 {
+                width: ~"calc(100%)";
+                margin-bottom: 40px;
+            }
+        }
+    }
 }
 
 //make things look okay on ipad and things inbetween desktop and 
-@media (max-width: 768px) and (min-width: 501px){
-	.movie-container {		
-		.movie-result {
-	        margin-left: 5px;
-    		margin-right: 5px;
-		}
-	}
-
-	.navbar-form{
-    	background-color: #2c3e50;
+@media (max-width: 768px) and (min-width: 501px) {
+    .movie-container {
+        .movie-result {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
     }
-
-    .page-container{
+    .navbar-form {
+        background-color: #2c3e50;
+    }
+    .page-container {
         margin-top: 52px;
     }
 }
 
 @media (min-width: 1900px) {
-	.page-container .movie-container {	
-		justify-content: flex-start;
-	}
+    .page-container .movie-container {
+        justify-content: flex-start;
+    }
 }

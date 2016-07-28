@@ -13,15 +13,15 @@ export default class MovieList extends React.Component {
 		};
 	}
 
-	componentWillMount(){
+	componentWillMount() {
 		movieService.on("change", this.getMovieData);
 		this.state = {
 			movies: movieService.get(),
 		};
 	}
 
-	componentDidMount(){
-		this.timer = setInterval(this.tick, 500);
+	componentDidMount() {
+		this.timer = setInterval(this.checkScroll, 500);
 	}
 
 	componentWillUnmount() {
@@ -30,36 +30,36 @@ export default class MovieList extends React.Component {
 		clearInterval(this.timer);
 	}
 
-	tick(){		
-        var percentScrolled = (document.body.scrollTop + window.innerHeight) / document.body.scrollHeight * 100
-        if(this.percentScrolled == percentScrolled){
-        	return;
-        }
+	checkScroll() {
+		var percentScrolled = (document.body.scrollTop + window.innerHeight) / document.body.scrollHeight * 100
+		if (this.percentScrolled == percentScrolled) {
+			return;
+		}
 
-        if(percentScrolled > 90){
-        	//get next page hambre
-        	movieService.getNext();
-        }
+		if (percentScrolled > 90) {
+			//get next page hambre
+			movieService.getNext();
+		}
 
-        this.percentScrolled = percentScrolled
-    }
+		this.percentScrolled = percentScrolled
+	}
 
 
 
-	getMovieData(){
+	getMovieData() {
 		this.setState({
 			movies: movieService.get()
 		});
 	}
-	render() {  	
-	  	var movieBits = [];
+	render() {
+		var movieBits = [];
 
 		//let - of allows you to iterate without having to use list[i]
-		for (let movie of this.state.movies) { 
+		for (let movie of this.state.movies) {
 			//drop all props into element. "..." Is awesome
-			movieBits.push(<MovieResult key={movie.id} {... movie} />)
+			movieBits.push( < MovieResult key = { movie.id } {...movie }/>)
 		}
-		return (	
+		return (
 			<div>
 				<div class="mobile-search navbar-default">
 					<SearchBox />
@@ -72,3 +72,4 @@ export default class MovieList extends React.Component {
 		);
 	}
 }
+

@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import Footer from "./Footer";
 import Nav from "./Nav";
 
-import moment from 'moment';
+import moment from "moment";
 
 require("./layout.less")
 
@@ -26,7 +26,6 @@ export default class Layout extends React.Component {
           <Footer/>
         </div>
       </div>
-
     );
   }
 }

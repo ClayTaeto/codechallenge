@@ -7,15 +7,15 @@ import MovieList from "./movieSearch/MovieList";
 
 
 //webpack needs to know to include the index.html file in builds
-require('file?name=[name].[ext]!../index.html');
+require("file?name=[name].[ext]!../index.html");
 
-const app = document.getElementById('app');
+const app = document.getElementById("app");
 
 ReactDOM.render(
-  <Router history={hashHistory}>
-    <Route path="/" component={Layout}>
-      <IndexRoute component={MovieList}></IndexRoute>
-      <Route path="search/:stuff" component={MovieList}></Route>
-    </Route>
-  </Router>,
+	<Router history={hashHistory}>
+		<Route path="/" component={Layout}>
+			<IndexRoute component={MovieList}></IndexRoute>
+			<Route path="search/:stuff" component={MovieList}></Route>
+		</Route>
+	</Router>,
 app);
